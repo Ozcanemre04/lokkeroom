@@ -2,12 +2,20 @@ import pkg from "pg";
 const {Pool} = pkg;
 import dotenv from 'dotenv';
 dotenv.config()
- const pool = new Pool({
-   connectionString:process.env.DATABASE_URL,
-   ssl: {
-    rejectUnauthorized: false
-  }
+
+let pool
+
+if(process.env.DATABASE_URL){
+  pool= process.env.DATABASE_URL
+  
+}
+else{
+  pool = new Pool({
+   connectionString:process.env.DB_CONNECTION_STRING
+  
 });
+
+}
 
 export default pool
 
