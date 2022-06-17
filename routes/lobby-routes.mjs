@@ -9,8 +9,9 @@ router.get("/:lobby_id",authenticateToken,async(req,res)=>{
     try{
         const {lobby_id} =req.params
         const author_id = req.user.id;
+        const admin = await pool.query('SELECT admin_id FROM lobby WHERE admin_id=$1 AND id=$2',[author_id,lobby_id])
         const lobby = await pool.query('SELECT user_id FROM participants WHERE user_id=$1 AND lobby_id=$2',[author_id,lobby_id])
-        if(lobby.rowCount===0){
+        if(lobby.rowCount===0 && admin.rowCount===0){
             res.json('you are not in this lobby')
 
         }
@@ -33,14 +34,22 @@ router.get("/:lobby_id/:id",authenticateToken,async(req,res)=>{
     try{
         const author_id = req.user.id
         const {lobby_id,id} =req.params
+        const admin = await pool.query('SELECT admin_id FROM lobby WHERE admin_id=$1 AND id=$2',[author_id,lobby_id])
         const lobby = await pool.query('SELECT user_id FROM participants WHERE user_id=$1 AND lobby_id=$2',[author_id,lobby_id])
-        if(lobby.rowCount===0){
+        const messageExist=await pool.query('SELECT * FROM messages WHERE id=$1 AND lobby_id=$2',[id,lobby_id])
+        if(lobby.rowCount===0 && admin.rowCount===0){
             res.json('you are not in this lobby')
 
         }
         else{
-            const allmessages=await pool.query('SELECT messages.message,messages.author_id,users.name,users.id,messages.id,messages.lobby_id FROM messages,users  WHERE users.id=messages.author_id AND lobby_id =$1 AND messages.id =$2 RETURNING *',[lobby_id,id])
-            res.json(allmessages.rows[0])
+            if(messageExist.rowCount===0){
+                res.json("message doesn't exist on this lobby")
+            }
+            else{
+                const allmessages=await pool.query('SELECT messages.message,messages.author_id,users.name,users.id,messages.id,messages.lobby_id FROM messages,users  WHERE users.id=messages.author_id AND lobby_id =$1 AND messages.id =$2',[lobby_id,id])
+                res.json(allmessages.rows[0])
+
+            }
 
         }
 
@@ -56,13 +65,14 @@ router.post('/:lobby_id',authenticateToken,async(req,res)=>{
         const {lobby_id}=req.params
         const {message} = req.body
         const author_id =req.user.id
+        const admin = await pool.query('SELECT admin_id,id FROM lobby WHERE admin_id=$1 AND id=$2',[author_id,lobby_id])
         if(!message)
         return res.status(400).send({ error: 'Invalid request' })
         const values = [message,author_id,lobby_id]
         const participants = await pool.query('SELECT user_id FROM participants WHERE user_id=$1 AND lobby_id=$2',[author_id,lobby_id])
     
 
-     if(participants.rowCount===0){
+     if(participants.rowCount===0 && admin.rowCount===0){
         res.json('not authorized')
      }
      else{
