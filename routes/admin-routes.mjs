@@ -191,4 +191,28 @@ router.post('/admin/:lobby_id',authenticateToken,async(req,res)=>{
 })
 
 
+router.get("/:lobby_id",authenticateToken,async(req,res)=>{
+    try{
+        const {lobby_id} =req.params
+        const author_id = req.user.id;
+        
+        const admin = await pool.query('SELECT user_id FROM lobby WHERE user_id=$1 AND id=$2',[author_id,lobby_id])
+        if(admin.rowCount===0){
+            res.json('you are not in this lobby')
+
+        }
+        else{
+            const allmessages=await pool.query('SELECT  messages.message,messages.author_id,users.name,users.id,messages.id,messages.lobby_id FROM messages,users WHERE users.id=messages.author_id AND lobby_id =$1 ORDER BY messages.id ASC',[lobby_id])
+
+            res.json(allmessages.rows)
+        }
+
+    
+
+    }
+   catch(err){
+    console.error(err.message)
+   }
+})
+
    export default router
