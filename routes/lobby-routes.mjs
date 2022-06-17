@@ -10,7 +10,8 @@ router.get("/:lobby_id",authenticateToken,async(req,res)=>{
         const {lobby_id} =req.params
         const author_id = req.user.id;
         const lobby = await pool.query('SELECT user_id FROM participants WHERE user_id=$1 AND lobby_id=$2',[author_id,lobby_id])
-        if(lobby.rowCount===0){
+        const admin = await pool.query('SELECT user_id FROM lobby WHERE user_id=$1 AND id=$2',[author_id,lobby_id])
+        if(lobby.rowCount===0 || admin.rowCount===0){
             res.json('you are not in this lobby')
 
         }
