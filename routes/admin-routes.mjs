@@ -191,7 +191,7 @@ router.post('/admin/:lobby_id',authenticateToken,async(req,res)=>{
 })
 
 
-router.get("/:lobby_id",authenticateToken,async(req,res)=>{
+router.get("/admin/:lobby_id",authenticateToken,async(req,res)=>{
     try{
         const {lobby_id} =req.params
         const author_id = req.user.id;
