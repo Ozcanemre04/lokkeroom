@@ -164,7 +164,7 @@ router.delete('/lobby/:lobby_id/remove_user/',authenticateToken,async(req,res)=>
     })
 
     //add message
-router.post('/admin/:lobby_id',authenticateToken,async(req,res)=>{
+router.post('/:lobby_id',authenticateToken,async(req,res)=>{
     try{
         const {lobby_id}=req.params
         const {message} = req.body
@@ -191,14 +191,14 @@ router.post('/admin/:lobby_id',authenticateToken,async(req,res)=>{
 })
 
 
-router.get("/admin/:lobby_id",authenticateToken,async(req,res)=>{
+router.get("/:lobby_id",authenticateToken,async(req,res)=>{
     try{
         const {lobby_id} =req.params
         const author_id = req.user.id;
         
-        const admin = await pool.query('SELECT user_id FROM lobby WHERE user_id=$1 AND id=$2',[author_id,lobby_id])
+        const admin = await pool.query('SELECT admin_id FROM lobby WHERE admin_id=$1 AND id=$2',[author_id,lobby_id])
         if(admin.rowCount===0){
-            res.json('you are not in this lobby')
+            res.json('you are not in this lobby or not admin')
 
         }
         else{
@@ -214,5 +214,66 @@ router.get("/admin/:lobby_id",authenticateToken,async(req,res)=>{
     console.error(err.message)
    }
 })
+
+
+router.get("/:lobby_id/:id",authenticateToken,async(req,res)=>{
+    try{
+        const author_id = req.user.id
+        const {lobby_id,id} =req.params
+        const admin = await pool.query('SELECT admin_id FROM lobby WHERE admin_id=$1 AND id=$2',[author_id,lobby_id])
+        const messageExist=await pool.query('SELECT * FROM messages WHERE id=$1 AND lobby_id=$2',[id,lobby_id])
+        if(admin.rowCount===0){
+            res.json('you are not in this lobby or not admin')
+
+        }
+        else{
+if(messageExist.rowCount===0){
+    res.json("message doesn't exist on this lobby")
+}
+else{
+
+    const allmessages=await pool.query('SELECT messages.message,messages.author_id,users.name,users.id,messages.id,messages.lobby_id FROM messages,users  WHERE users.id=messages.author_id AND lobby_id =$1 AND messages.id =$2',[lobby_id,id])
+    res.json(allmessages.rows[0])
+
+}
+
+        }
+
+    }
+    catch(err){
+        console.error(err.message)
+    }
+})
+
+
+router.get('/users/:lobby_id/:id',authenticateToken,async(req,res)=>{
+    try{
+        const author_id = req.user.id
+        const {lobby_id,id} = req.params
+        const admin = await pool.query('SELECT admin_id FROM lobby WHERE admin_id=$1 AND id=$2',[author_id,lobby_id])
+           const participants = await pool.query('SELECT user_id FROM participants WHERE user_id=$1 AND lobby_id=$2',[id,lobby_id])
+           if(admin.rowCount===0){
+            res.json('not admin')
+           }
+           else{
+
+               if(participants.rowCount===0){
+                res.json("user doesn't exist in this lobby or not admin")
+               }
+               else{
+                   const users = await pool.query("SELECT users.id,users.name,participants.lobby_id FROM users,participants  WHERE users.id=participants.user_id AND lobby_id=$1 AND users.id =$2",[lobby_id,id])
+                   res.json(users.rows[0])
+    
+               }
+           }
+
+        
+    }
+    catch(err){
+        console.error(err.message)
+
+    }
+   });
+
 
    export default router

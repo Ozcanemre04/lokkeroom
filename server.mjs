@@ -18,6 +18,6 @@ app.get('/',(req,res)=>res.send({info:`hello`}));
 app.use('/api',usersRouter)
 app.use('/api',authRouter)
 app.use('/api/lobby',lobbyRouter)
-app.use('/api',adminRouter)
+app.use('/api/admin',adminRouter)
 
 app.listen(PORT,()=>console.log(`server started:http://localhost:${PORT}/`))

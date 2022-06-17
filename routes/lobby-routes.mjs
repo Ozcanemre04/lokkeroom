@@ -39,7 +39,7 @@ router.get("/:lobby_id/:id",authenticateToken,async(req,res)=>{
 
         }
         else{
-            const allmessages=await pool.query('SELECT messages.message,messages.author_id,users.name,users.id,messages.id,messages.lobby_id FROM messages,users  WHERE users.id=messages.author_id AND lobby_id =$1 AND id =$2 RETURNING *',[lobby_id,id])
+            const allmessages=await pool.query('SELECT messages.message,messages.author_id,users.name,users.id,messages.id,messages.lobby_id FROM messages,users  WHERE users.id=messages.author_id AND lobby_id =$1 AND messages.id =$2 RETURNING *',[lobby_id,id])
             res.json(allmessages.rows[0])
 
         }
