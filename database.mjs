@@ -3,19 +3,13 @@ const {Pool} = pkg;
 import dotenv from 'dotenv';
 dotenv.config()
 
-let pool
 
-if(process.env.DATABASE_URL){
-  pool= process.env.DATABASE_URL
-  
-}
-else{
-  pool = new Pool({
-   connectionString:process.env.DB_CONNECTION_STRING
-  
+ const pool = new Pool({
+   connectionString:process.env.DATABASE_URL,
+   ssl: {
+    rejectUnauthorized: false
+  }
 });
-
-}
 
 export default pool
 
