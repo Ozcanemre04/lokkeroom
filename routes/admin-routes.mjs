@@ -4,7 +4,7 @@ import {authenticateToken} from "../function_token/authenticateToken.mjs"
 const router=express.Router();
 
 //get all users in same lobby
-router.get('/users/:lobby_id',authenticateToken,async(req,res)=>{
+router.get('/users/:lobby_id/page=1',authenticateToken,async(req,res)=>{
     try{
         const {lobby_id}=req.params;
         const admin = req.user.id
@@ -14,7 +14,83 @@ router.get('/users/:lobby_id',authenticateToken,async(req,res)=>{
 }
         else{
             
-              const users = await pool.query("SELECT DISTINCT users.id,users.name,participants.lobby_id FROM users,participants WHERE users.id=participants.user_id AND lobby_id = $1  ORDER BY name ASC",[lobby_id])
+              const users = await pool.query(`SELECT DISTINCT users.id,users.name,participants.lobby_id FROM users,participants WHERE users.name SIMILAR TO '(a|b|c|d|e|f)%' AND users.id=participants.user_id AND lobby_id = $1  ORDER BY name ASC`,[lobby_id])
+             return res.json(users.rows)
+        }
+    }catch(err){
+        console.error(err.message)
+
+    }
+    
+   });
+router.get('/users/:lobby_id/page=2',authenticateToken,async(req,res)=>{
+    try{
+        const {lobby_id}=req.params;
+        const admin = req.user.id
+        const lobby= await pool.query('SELECT admin_id FROM lobby WHERE admin_id=$1 AND id=$2',[admin,lobby_id])
+        if(lobby.rowCount===0){
+           res.json("you are not admin")   
+}
+        else{
+            
+              const users = await pool.query(`SELECT DISTINCT users.id,users.name,participants.lobby_id FROM users,participants WHERE users.name SIMILAR TO '(g|h|i|j|k|l)%' AND users.id=participants.user_id AND lobby_id = $1  ORDER BY name ASC`,[lobby_id])
+             return res.json(users.rows)
+        }
+    }catch(err){
+        console.error(err.message)
+
+    }
+    
+   });
+router.get('/users/:lobby_id/page=3',authenticateToken,async(req,res)=>{
+    try{
+        const {lobby_id}=req.params;
+        const admin = req.user.id
+        const lobby= await pool.query('SELECT admin_id FROM lobby WHERE admin_id=$1 AND id=$2',[admin,lobby_id])
+        if(lobby.rowCount===0){
+           res.json("you are not admin")   
+}
+        else{
+            
+              const users = await pool.query(`SELECT DISTINCT users.id,users.name,participants.lobby_id FROM users,participants WHERE users.name SIMILAR TO '(m|n|o|p|q|r)%' AND users.id=participants.user_id AND lobby_id = $1  ORDER BY name ASC`,[lobby_id])
+             return res.json(users.rows)
+        }
+    }catch(err){
+        console.error(err.message)
+
+    }
+    
+   });
+router.get('/users/:lobby_id/page=4',authenticateToken,async(req,res)=>{
+    try{
+        const {lobby_id}=req.params;
+        const admin = req.user.id
+        const lobby= await pool.query('SELECT admin_id FROM lobby WHERE admin_id=$1 AND id=$2',[admin,lobby_id])
+        if(lobby.rowCount===0){
+           res.json("you are not admin")   
+}
+        else{
+            
+              const users = await pool.query(`SELECT DISTINCT users.id,users.name,participants.lobby_id FROM users,participants WHERE users.name SIMILAR TO '(s|t|u|v|w)%' AND users.id=participants.user_id AND lobby_id = $1  ORDER BY name ASC`,[lobby_id])
+             return res.json(users.rows)
+        }
+    }catch(err){
+        console.error(err.message)
+
+    }
+    
+   });
+router.get('/users/:lobby_id/page=5',authenticateToken,async(req,res)=>{
+    try{
+        const {lobby_id}=req.params;
+        const admin = req.user.id
+        const lobby= await pool.query('SELECT admin_id FROM lobby WHERE admin_id=$1 AND id=$2',[admin,lobby_id])
+        if(lobby.rowCount===0){
+           res.json("you are not admin")   
+}
+        else{
+            
+              const users = await pool.query(`SELECT DISTINCT users.id,users.name,participants.lobby_id FROM users,participants WHERE users.name SIMILAR TO '(x|y|z)%' AND users.id=participants.user_id AND lobby_id = $1  ORDER BY name ASC`,[lobby_id])
              return res.json(users.rows)
         }
     }catch(err){

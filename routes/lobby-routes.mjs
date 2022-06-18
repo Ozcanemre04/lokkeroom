@@ -5,24 +5,50 @@ const router=express.Router();
 
 
 // get all messages in x lobby
+// http://localhost:5000/api/lobby/:lobby_id?page=?&limit=?
 router.get("/:lobby_id",authenticateToken,async(req,res)=>{
+    //pagination
+    const page=parseInt(req.query.page);
+    const limit=parseInt(req.query.limit);
+    const startIndex=(page - 1) * limit;
+    const endIndex = page * limit;
+    const result ={}
+
     try{
+        
         const {lobby_id} =req.params
         const author_id = req.user.id;
         const admin = await pool.query('SELECT admin_id FROM lobby WHERE admin_id=$1 AND id=$2',[author_id,lobby_id])
         const lobby = await pool.query('SELECT user_id FROM participants WHERE user_id=$1 AND lobby_id=$2',[author_id,lobby_id])
         if(lobby.rowCount===0 && admin.rowCount===0){
             res.json('you are not in this lobby')
-
+            
         }
         else{
             const allmessages=await pool.query('SELECT  messages.message,messages.author_id,users.name,users.id,messages.id,messages.lobby_id FROM messages,users WHERE users.id=messages.author_id AND lobby_id =$1 ORDER BY messages.id ASC',[lobby_id])
+            //pagination
+            if(endIndex < allmessages.rows.length){
+                result.next ={
+                    page: page + 1,
+                    limit:limit
+                }
 
-            res.json(allmessages.rows)
+            }
+
+            if(startIndex > 0){
+                result.previous ={
+                    page: page - 1,
+                    limit:limit
+                }
+                
+            }
+             result.result = allmessages.rows.slice(startIndex,endIndex)
+            
+            res.json(result)
         }
-
-    
-
+        
+        
+        
     }
    catch(err){
     console.error(err.message)
