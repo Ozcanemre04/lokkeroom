@@ -535,17 +535,20 @@ function hmrAcceptRun(bundle, id) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _login = require("./login");
 var _loginDefault = parcelHelpers.interopDefault(_login);
+var _lobby = require("./lobby");
+var _lobbyDefault = parcelHelpers.interopDefault(_lobby);
 const loginButton = document.querySelector(".login_button");
 const registerOverlay = document.querySelector(".register-overlay");
 const loginOverlay = document.querySelector(".login-overlay");
 const registerOverlayButton = document.querySelector(".overlay-register-button");
 const loginOverlayButton = document.querySelector(".overlay-login-button");
-const lobby = document.querySelector(".lobby");
-loginButton.addEventListener("click", (e)=>{
+const messageButton = document.querySelector(".message");
+if (messageButton) messageButton.addEventListener("click", ()=>{
+    (0, _lobbyDefault.default)();
+});
+if (loginButton) loginButton.addEventListener("click", (e)=>{
     e.preventDefault();
     (0, _loginDefault.default)();
-    lobby.style.display = "flex";
-    loginOverlay.style.display = "none";
 });
 registerOverlayButton.addEventListener("click", ()=>{
     registerOverlay.style.display = "flex";
@@ -556,11 +559,12 @@ loginOverlayButton.addEventListener("click", ()=>{
     loginOverlay.style.display = "flex";
 });
 
-},{"./login":"7yHem","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7yHem":[function(require,module,exports) {
+},{"./login":"7yHem","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./lobby":"ewZO5"}],"7yHem":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const loginEmail = document.querySelector("#login_email");
 const loginPassword = document.querySelector("#login_password");
+const date = Date.now();
 function login() {
     fetch("https://lokkeroom.herokuapp.com/api/login", {
         method: "POST",
@@ -573,6 +577,12 @@ function login() {
         }
     }).then((res)=>res.json()).then((data)=>{
         console.log(data);
+        if (data.error) alert(data.error);
+        else {
+            window.location = "/lobby.html";
+            document.cookie = "AccessToken=" + Object.values(data)[0] + "; max-age=86400; path=/;";
+            document.cookie = "RefreshToken=" + Object.values(data)[1] + "; max-age=86400; path=/;";
+        }
     });
 }
 exports.default = login;
@@ -607,6 +617,23 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["3pPec","al9TC"], "al9TC", "parcelRequire0e41")
+},{}],"ewZO5":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const lobbySection = document.querySelector(".lobby-section");
+function lobby() {
+    fetch("https://lokkeroom.herokuapp.com/api/lobby/3?page=1&limit=100", {
+        method: "GET"
+    }).then((res)=>res.json()).then((data)=>{
+        for(let i = 0; i < data.length; i++){
+            let sec = document.createElement("p");
+            sec.innerText = data.messages[message];
+            lobbySection.appendChild(sec);
+        }
+    });
+}
+exports.default = lobby;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["3pPec","al9TC"], "al9TC", "parcelRequire0e41")
 
 //# sourceMappingURL=index.95016fb6.js.map

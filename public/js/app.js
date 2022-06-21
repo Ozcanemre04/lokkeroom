@@ -3,20 +3,25 @@ const registerOverlay=document.querySelector('.register-overlay')
 const loginOverlay=document.querySelector('.login-overlay')
 const registerOverlayButton=document.querySelector('.overlay-register-button')
 const loginOverlayButton=document.querySelector('.overlay-login-button')
-const lobby =document.querySelector('.lobby')
+const messageButton = document.querySelector('.message')
 
 
 import login from './login'
+import lobby from './lobby'
+if(messageButton){
+    messageButton.addEventListener('click',()=>{
+        lobby()
 
-loginButton.addEventListener('click',(e)=>{
-    e.preventDefault();
-    login();
-    lobby.style.display="flex"
-    loginOverlay.style.display="none"
-   
+    })
+}
+if(loginButton){
+    loginButton.addEventListener('click',(e)=>{
+        e.preventDefault();
+        login();
+         
+         })
 
-    
-   })
+}
    
 
    registerOverlayButton.addEventListener('click',()=>{
@@ -29,3 +34,4 @@ loginButton.addEventListener('click',(e)=>{
    })
 
 
+  
