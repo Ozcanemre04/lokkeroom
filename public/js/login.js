@@ -6,7 +6,7 @@ const loginPassword = document.querySelector('#login_password')
 
 //login
 export default function login(){
- fetch('http://localhost:5000/api/login',{
+ fetch('https://lokkeroom.herokuapp.com/api/login',{
     method:"POST",
     body:JSON.stringify({
         "email":loginEmail.value,
