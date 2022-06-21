@@ -6,6 +6,12 @@ const router=express.Router();
 import {authenticateToken} from "../function_token/authenticateToken.mjs"
 
 
+router.get('/user',authenticateToken,async(req,res)=>{
+    const user_id =req.user.id
+    const user =await pool.query('SELECT name ,id FROM users WHERE id=$1',[user_id])
+    res.json(user.rows[0])
+})
+
 
 
    router.get('/users/:lobby_id/:id',authenticateToken,async(req,res)=>{
