@@ -1,1 +1,1 @@
-web:node server.mjs
+web:server/node server.mjs
