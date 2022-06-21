@@ -1,21 +1,24 @@
-5719
-44/home/ozcanemre/lokkeroom/public/js/login.js1655730229835167000 0
-46/home/ozcanemre/lokkeroom/public/css/style.css1655664321865372800 0
+5723
+44/home/ozcanemre/lokkeroom/public/js/lobby.js1655796704900956200 0
+44/home/ozcanemre/lokkeroom/public/js/login.js1655810194171738100 0
+46/home/ozcanemre/lokkeroom/public/css/style.css1655801645180956200 0
 36/home/ozcanemre/lokkeroom/public/css1655663065175372800 1
-51/home/ozcanemre/lokkeroom/public/html/register.html1655711752744124100 0
-48/home/ozcanemre/lokkeroom/public/html/index.html1655664239895372800 0
-48/home/ozcanemre/lokkeroom/public/html/login.html1655730106825167000 0
-37/home/ozcanemre/lokkeroom/public/html1655713781394124100 1
+48/home/ozcanemre/lokkeroom/public/html/index.html1655801149550956200 0
+48/home/ozcanemre/lokkeroom/public/html/lobby.html1655801214260956200 0
+37/home/ozcanemre/lokkeroom/public/html1655796730570956200 1
 32/home/ozcanemre/lokkeroom/public1655663857125372800 1
-55/home/ozcanemre/lokkeroom/dist/register.d10c7ac2.js.map1655720558094124100 0
-41/home/ozcanemre/lokkeroom/dist/index.html1655720558084124100 0
+55/home/ozcanemre/lokkeroom/dist/register.d10c7ac2.js.map1655730986045167000 0
+41/home/ozcanemre/lokkeroom/dist/index.html1655801465270956200 0
 48/home/ozcanemre/lokkeroom/dist/login.07e8d194.js1655729921855167000 0
-57/home/ozcanemre/lokkeroom/dist/index_section.8a85fe4e.jpg1655720558084124100 0
+57/home/ozcanemre/lokkeroom/dist/index_section.8a85fe4e.jpg1655801465290956200 0
 52/home/ozcanemre/lokkeroom/dist/login.4dd61e90.js.map1655716132924124100 0
-48/home/ozcanemre/lokkeroom/dist/login.95016fb6.js1655730230005167000 0
-52/home/ozcanemre/lokkeroom/dist/login.95016fb6.js.map1655730230005167000 0
-49/home/ozcanemre/lokkeroom/dist/index.c36f3da9.css1655720558084124100 0
-30/home/ozcanemre/lokkeroom/dist1655730230015167000 1
+48/home/ozcanemre/lokkeroom/dist/login.95016fb6.js1655731250165167000 0
+48/home/ozcanemre/lokkeroom/dist/lobby.9e8f9e67.js1655801465290956200 0
+41/home/ozcanemre/lokkeroom/dist/lobby.html1655801465280956200 0
+52/home/ozcanemre/lokkeroom/dist/index.95016fb6.js.map1655810194311738100 0
+52/home/ozcanemre/lokkeroom/dist/login.95016fb6.js.map1655731250175167000 0
+49/home/ozcanemre/lokkeroom/dist/index.c36f3da9.css1655801529080956200 0
+30/home/ozcanemre/lokkeroom/dist1655810194311738100 1
 43/home/ozcanemre/lokkeroom/server/server.mjs1655717344084124100 0
 48/home/ozcanemre/lokkeroom/server/db/database.mjs1655728665335167000 0
 35/home/ozcanemre/lokkeroom/server/db1655662638305372800 1
@@ -23,7 +26,7 @@
 56/home/ozcanemre/lokkeroom/server/routes/users-routes.mjs1655662809865372800 0
 56/home/ozcanemre/lokkeroom/server/routes/lobby-routes.mjs1655662818435372800 0
 32/home/ozcanemre/lokkeroom/server1655662656875372800 1
-38/home/ozcanemre/lokkeroom/package.json1655730555515167000 0
+38/home/ozcanemre/lokkeroom/package.json1655810603801738100 0
 36/home/ozcanemre/lokkeroom/.gitignore1655206670596820700 0
 61/home/ozcanemre/lokkeroom/node_modules/resolve-from/readme.md1655715303824124100 0
 60/home/ozcanemre/lokkeroom/node_modules/resolve-from/index.js1655715303764124100 0
@@ -370,7 +373,7 @@
 79/home/ozcanemre/lokkeroom/node_modules/@parcel/core/src/requests/PathRequest.js1655715308124124100 0
 77/home/ozcanemre/lokkeroom/node_modules/caniuse-lite/dist/unpacker/browsers.js1655715304674124100 0
 64/home/ozcanemre/lokkeroom/node_modules/@parcel/optimizer-css/lib1655715305904124100 1
-35/home/ozcanemre/lokkeroom/public/js1655711824104124100 1
+35/home/ozcanemre/lokkeroom/public/js1655796704900956200 1
 64/home/ozcanemre/lokkeroom/node_modules/posthtml-parser/readme.md1655715303974124100 0
 53/home/ozcanemre/lokkeroom/node_modules/@lezer/lr/dist1655715304134124100 1
 87/home/ozcanemre/lokkeroom/node_modules/@parcel/core/src/requests/ParcelConfigRequest.js1655715308094124100 0
@@ -771,7 +774,7 @@
 74/home/ozcanemre/lokkeroom/node_modules/@parcel/runtime-js/lib/JSRuntime.js1655715304744124100 0
 84/home/ozcanemre/lokkeroom/node_modules/@parcel/runtime-js/src/helpers/.eslintrc.json1655715304824124100 0
 91/home/ozcanemre/lokkeroom/node_modules/@parcel/runtime-js/src/helpers/browser/css-loader.js1655715304634124100 0
-51/home/ozcanemre/lokkeroom/dist/register.d10c7ac2.js1655720558084124100 0
+51/home/ozcanemre/lokkeroom/dist/register.d10c7ac2.js1655730986025167000 0
 61/home/ozcanemre/lokkeroom/node_modules/string_decoder/LICENSE1655109305076066800 0
 89/home/ozcanemre/lokkeroom/node_modules/caniuse-lite/data/features/css-element-function.js1655715305014124100 0
 96/home/ozcanemre/lokkeroom/node_modules/@parcel/runtime-js/src/helpers/browser/prefetch-loader.js1655715304784124100 0
@@ -948,7 +951,7 @@
 76/home/ozcanemre/lokkeroom/node_modules/@swc/helpers/lib/_set_prototype_of.js1655715304534124100 0
 64/home/ozcanemre/lokkeroom/node_modules/@parcel/fs-search/LICENSE1655715304524124100 0
 91/home/ozcanemre/lokkeroom/node_modules/@parcel/fs-search/node_modules/detect-libc/README.md1655715306594124100 0
-42/home/ozcanemre/lokkeroom/public/js/app.js1655729941165167000 0
+42/home/ozcanemre/lokkeroom/public/js/app.js1655801092240956200 0
 110/home/ozcanemre/lokkeroom/node_modules/@parcel/node-resolver-core/test/fixture/node_modules/package-alias-glob1655715305304124100 1
 84/home/ozcanemre/lokkeroom/node_modules/@parcel/package-manager/test/fixtures/has-foo1655715307424124100 1
 89/home/ozcanemre/lokkeroom/node_modules/@parcel/fs-search/node_modules/detect-libc/LICENSE1655715306644124100 0
@@ -1143,7 +1146,7 @@
 73/home/ozcanemre/lokkeroom/node_modules/@parcel/watcher/src/unix/legacy.cc1655715304164124100 0
 79/home/ozcanemre/lokkeroom/node_modules/@parcel/css/node_modules/detect-libc/bin1655715306314124100 1
 53/home/ozcanemre/lokkeroom/node_modules/semver/classes1655109305346066800 1
-47/home/ozcanemre/lokkeroom/dist/html.4d48338d.js1655720558074124100 0
+47/home/ozcanemre/lokkeroom/dist/html.4d48338d.js1655797162050956200 0
 58/home/ozcanemre/lokkeroom/node_modules/semver/package.json1655109305346066800 0
 54/home/ozcanemre/lokkeroom/node_modules/semver/internal1655109305336066800 1
 57/home/ozcanemre/lokkeroom/node_modules/@parcel/events/lib1655715306714124100 1
@@ -1152,7 +1155,7 @@
 94/home/ozcanemre/lokkeroom/node_modules/@parcel/transformer-js/node_modules/semver/package.json1655715303924124100 0
 68/home/ozcanemre/lokkeroom/node_modules/semver/functions/satisfies.js1655109305346066800 0
 51/home/ozcanemre/lokkeroom/node_modules/css-what/lib1655715303844124100 1
-44/home/ozcanemre/lokkeroom/dist/register.html1655720558084124100 0
+44/home/ozcanemre/lokkeroom/dist/register.html1655730986025167000 0
 78/home/ozcanemre/lokkeroom/node_modules/node-gyp-build-optional-packages/bin.js1655715303814124100 0
 84/home/ozcanemre/lokkeroom/node_modules/@parcel/runtime-browser-hmr/lib/HMRRuntime.js1655715305124124100 0
 80/home/ozcanemre/lokkeroom/node_modules/node-gyp-build-optional-packages/index.js1655715303854124100 0
@@ -1571,7 +1574,7 @@
 72/home/ozcanemre/lokkeroom/node_modules/@parcel/utils/src/alternatives.js1655715305594124100 0
 66/home/ozcanemre/lokkeroom/node_modules/@parcel/css/node/index.d.ts1655715304424124100 0
 95/home/ozcanemre/lokkeroom/node_modules/@parcel/package-manager/node_modules/semver/package.json1655715303924124100 0
-51/home/ozcanemre/lokkeroom/dist/html.4d48338d.js.map1655720558084124100 0
+51/home/ozcanemre/lokkeroom/dist/html.4d48338d.js.map1655797162060956200 0
 56/home/ozcanemre/lokkeroom/node_modules/msgpackr/index.js1655715304014124100 0
 94/home/ozcanemre/lokkeroom/node_modules/dom-serializer/node_modules/entities/lib/index.d.ts.map1655715304154124100 0
 76/home/ozcanemre/lokkeroom/node_modules/csso/lib/replace/AttributeSelector.js1655715304184124100 0
@@ -1938,7 +1941,6 @@
 53/home/ozcanemre/lokkeroom/node_modules/string_decoder1655109305146066800 1
 87/home/ozcanemre/lokkeroom/node_modules/@swc/helpers/src/_class_apply_descriptor_set.mjs1655715304724124100 0
 74/home/ozcanemre/lokkeroom/node_modules/css-tree/lib/syntax/atrule/index.js1655715304884124100 0
-48/home/ozcanemre/lokkeroom/public/html/group.html1655713781394124100 0
 58/home/ozcanemre/lokkeroom/node_modules/type-fest/base.d.ts1655715303934124100 0
 54/home/ozcanemre/lokkeroom/node_modules/tslib/README.md1655715304004124100 0
 72/home/ozcanemre/lokkeroom/node_modules/semver/functions/compare-build.js1655109305216066800 0
@@ -3274,7 +3276,7 @@
 70/home/ozcanemre/lokkeroom/node_modules/express/lib/middleware/query.js1655109305246066800 0
 57/home/ozcanemre/lokkeroom/node_modules/has-symbols/.nycrc1655109305116066800 0
 66/home/ozcanemre/lokkeroom/node_modules/@parcel/events/lib/index.js1655715306694124100 0
-41/home/ozcanemre/lokkeroom/dist/login.html1655730105565167000 0
+41/home/ozcanemre/lokkeroom/dist/login.html1655730985995167000 0
 72/home/ozcanemre/lokkeroom/node_modules/@parcel/transformer-image/LICENSE1655715304144124100 0
 74/home/ozcanemre/lokkeroom/node_modules/css-tree/lib/syntax/node/AnPlusB.js1655715303934124100 0
 54/home/ozcanemre/lokkeroom/node_modules/bcrypt/Makefile1655109305136066800 0
@@ -3661,6 +3663,7 @@
 82/home/ozcanemre/lokkeroom/node_modules/cosmiconfig/dist/getPropertyByPath.d.ts.map1655715304204124100 0
 70/home/ozcanemre/lokkeroom/node_modules/@parcel/runtime-browser-hmr/src1655715305134124100 1
 79/home/ozcanemre/lokkeroom/node_modules/@parcel/reporter-dev-server/package.json1655715307534124100 0
+48/home/ozcanemre/lokkeroom/dist/index.95016fb6.js1655810194301738100 0
 66/home/ozcanemre/lokkeroom/node_modules/@parcel/transformer-css/src1655715305794124100 1
 70/home/ozcanemre/lokkeroom/node_modules/@parcel/transformer-css/LICENSE1655715305784124100 0
 81/home/ozcanemre/lokkeroom/node_modules/@parcel/runtime-react-refresh/package.json1655715305074124100 0
@@ -4901,6 +4904,7 @@
 57/home/ozcanemre/lokkeroom/node_modules/debug/package.json1655109305086066800 0
 73/home/ozcanemre/lokkeroom/node_modules/@parcel/markdown-ansi/package.json1655715303944124100 0
 54/home/ozcanemre/lokkeroom/node_modules/debug/README.md1655109305156066800 0
+52/home/ozcanemre/lokkeroom/dist/lobby.9e8f9e67.js.map1655801465300956200 0
 76/home/ozcanemre/lokkeroom/node_modules/abortcontroller-polyfill/src/utils.js1655715304194124100 0
 62/home/ozcanemre/lokkeroom/node_modules/os-browserify/README.md1655720512524124100 0
 58/home/ozcanemre/lokkeroom/node_modules/debug/karma.conf.js1655109305196066800 0
@@ -5434,7 +5438,7 @@
 55/home/ozcanemre/lokkeroom/node_modules/inherits/LICENSE1655109305146066800 0
 67/home/ozcanemre/lokkeroom/node_modules/inherits/inherits_browser.js1655109305116066800 0
 104/home/ozcanemre/lokkeroom/node_modules/@msgpackr-extract/msgpackr-extract-linux-x64/node.abi93.musl.node1655715303914124100 0
-53/home/ozcanemre/lokkeroom/dist/index.c36f3da9.css.map1655720558084124100 0
+53/home/ozcanemre/lokkeroom/dist/index.c36f3da9.css.map1655801529080956200 0
 62/home/ozcanemre/lokkeroom/node_modules/supports-color/index.js1655715303794124100 0
 93/home/ozcanemre/lokkeroom/node_modules/@msgpackr-extract/msgpackr-extract-linux-x64/README.md1655715303794124100 0
 65/home/ozcanemre/lokkeroom/node_modules/whatwg-url/lib/URL-impl.js1655109305166066800 0
