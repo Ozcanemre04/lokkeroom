@@ -159,6 +159,16 @@ router.delete('/message/:message_id',authenticateToken,async(req,res)=>{
     }
 })
 
+router.get('/',authenticateToken,async(req,res)=>{
+    try{
+        const author_id =req.user.id
+        const lobby = await pool.query('SELECT participants.lobby_id , participants.user_id ,lobby.name,lobby.id FROM participants,lobby WHERE participants.lobby_id=lobby.id AND participants.user_id=$1',[author_id])
+       res.json(lobby.rows)
+    }
+   catch(err){
+    res.json(err.message)
+   }
+})
 
 
 

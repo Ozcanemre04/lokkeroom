@@ -8,8 +8,9 @@ const messageButton = document.querySelector('.message')
 
 import login from './login'
 import lobby from './lobby'
+import messages from './message'
 lobby()
-
+messages()
 
 if(loginButton){
     loginButton.addEventListener('click',(e)=>{

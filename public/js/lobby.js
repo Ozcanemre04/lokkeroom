@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 
-const section = document.querySelector('.lobby-section')
+const leftSide = document.querySelector('.left-side')
 
 
 export default function lobby(){
@@ -16,10 +16,10 @@ export default function lobby(){
     })
     .then(res=>res.json())
     .then(data=>{
-       console.log(data);
+       
        let p = document.createElement('p')
        p.innerText=data.name;
-       section.appendChild(p)
+       leftSide.appendChild(p)
        
        
     })
