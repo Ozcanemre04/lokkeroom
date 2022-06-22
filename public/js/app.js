@@ -8,12 +8,9 @@ const messageButton = document.querySelector('.message')
 
 import login from './login'
 import lobby from './lobby'
-if(messageButton){
-    messageButton.addEventListener('click',()=>{
-        lobby()
+lobby()
 
-    })
-}
+
 if(loginButton){
     loginButton.addEventListener('click',(e)=>{
         e.preventDefault();
@@ -23,15 +20,21 @@ if(loginButton){
 
 }
    
+if(registerOverlay){
+    registerOverlayButton.addEventListener('click',()=>{
+     registerOverlay.style.display="flex"
+     loginOverlay.style.display='none'
+    })
 
-   registerOverlayButton.addEventListener('click',()=>{
-    registerOverlay.style.display="flex"
-    loginOverlay.style.display='none'
-   })
-   loginOverlayButton.addEventListener('click',()=>{
-    registerOverlay.style.display="none"
-    loginOverlay.style.display='flex'
-   })
+}
+if(loginOverlay){
+    loginOverlayButton.addEventListener('click',()=>{
+     registerOverlay.style.display="none"
+     loginOverlay.style.display='flex'
+    })
+
+}
+
 
 
   

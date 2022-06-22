@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie'
 
 
 const loginEmail = document.querySelector('#login_email')
@@ -29,8 +30,9 @@ export default function login(){
      else {
          window.location ="/lobby.html"
         
-        document.cookie = "AccessToken=" + Object.values(data)[0] + "; max-age=86400; path=/;";
-        document.cookie = "RefreshToken=" + Object.values(data)[1] + "; max-age=86400; path=/;";
+        Cookies.set('AccessToken', Object.values(data)[0],{expires:1})
+        Cookies.set('refreshToken', Object.values(data)[0],{expires:1})
+        
     }
         
      
