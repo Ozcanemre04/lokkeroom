@@ -28,7 +28,10 @@ export default function login(){
         alert(data.error)
      }
      else {
-         window.location ="/lobby.html"
+        if(Cookies.get('AccessToken')){
+            window.location ="/lobby.html"
+
+        }
         
         Cookies.set('AccessToken', Object.values(data)[0],{expires:1})
         Cookies.set('refreshToken', Object.values(data)[0],{expires:1})
