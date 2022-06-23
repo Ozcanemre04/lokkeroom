@@ -167,7 +167,16 @@ router.delete('/lobby/:lobby_id/remove_user/',authenticateToken,async(req,res)=>
 
 
 
-
+    router.get('/',authenticateToken,async(req,res)=>{
+        try{
+            const author_id =req.user.id
+            const lobby = await pool.query('SELECT * FROM lobby WHERE admin_id=$1',[author_id])
+           res.json(lobby.rows)
+        }
+       catch(err){
+        res.json(err.message)
+       }
+    })
 
 
 
