@@ -2,6 +2,10 @@
     box-sizing: border-box;
     margin: 0;
 }
+.error{
+    display: flex;
+    justify-content: center;
+}
 
 .index_header{
   display: flex;
@@ -23,7 +27,7 @@
     text-shadow: 0 0 5px white;
     font-size: 50px;
 }
-.login-overlay,.register-overlay{
+.login-overlay,.register-overlay,.patch-message-overlay{
     position: absolute;
     background-color: rgba(0, 0, 0,0.5);
     left: 25%;
@@ -60,3 +64,71 @@ a:hover{
     height: 621px;
     
 }
+.left-side p{
+    color: white;
+}
+.both-side{
+    display: flex;
+
+}
+
+.right-side p {
+    color: white;
+}
+
+.right-side{
+    position: relative;
+    width: 80%;
+    height: 621px;
+    background-color: rgba(0, 0, 0,0.5);
+}
+.left-side{
+    width: 20%;
+    height: 621px;
+    background-color: rgba(255, 255, 255,0.1);
+}
+
+.message{
+    width: 500px;
+    height: 50px;
+    background-color: rgba(178, 170, 170,0.5);
+    margin:10px 0 10px 10px;
+    display: flex;
+    border-radius: 10px;
+    justify-content: space-between;
+}
+.message >i{
+   align-self: flex-end;
+   margin-right: 10px;
+}
+.message >p{
+    align-self: center;
+    margin-left: 10px;
+}
+.input{
+    position:absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.input-message{
+   height: 50px;
+   width: 300px;
+   border-radius: 10px;
+   outline: none;
+   background-color: transparent;
+   border: 1px solid blue;
+   color: wheat;
+}
+
+.send{
+    position: relative;
+    bottom: -15px;
+    width: 0; 
+    height: 0; 
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    display: inline-block;
+    border-left: 20px solid rgb(2, 39, 173);
+}
+

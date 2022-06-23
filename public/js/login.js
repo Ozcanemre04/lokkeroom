@@ -5,10 +5,11 @@ const loginEmail = document.querySelector('#login_email')
 const loginPassword = document.querySelector('#login_password')
 
   
-const date = Date.now()
+
 
 //login
 export default function login(){
+    
  fetch('https://lokkeroom.herokuapp.com/api/login',{
     method:"POST",
     body:JSON.stringify({
@@ -28,17 +29,20 @@ export default function login(){
         alert(data.error)
      }
      else {
+         Cookies.set('AccessToken', Object.values(data)[0],{expires:1})
+         Cookies.set('refreshToken', Object.values(data)[0],{expires:1})
+         
+         
         if(Cookies.get('AccessToken')){
             window.location ="/lobby.html"
 
         }
+
         
-        Cookies.set('AccessToken', Object.values(data)[0],{expires:1})
-        Cookies.set('refreshToken', Object.values(data)[0],{expires:1})
         
     }
         
-     
+    
 
 })}
 

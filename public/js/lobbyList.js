@@ -1,7 +1,7 @@
 
 import Cookies from "js-cookie";
-export default function messages(){
-    fetch('https://lokkeroom.herokuapp.com/api/admin/users/3',{
+export default function lobbyList(){
+    fetch('https://lokkeroom.herokuapp.com/api/lobby',{
        method:"GET",
        
        headers:{
@@ -13,19 +13,22 @@ export default function messages(){
     })
     .then(res=>res.json())
     .then(data=>{
-        displayMessages(data)
+        displaylobby(data)
         
     })
 }
 
 
-function displayMessages(data){
+function displaylobby(data){
     
     for(let i = 0; i < data.length; i++){
-        const rightSide = document.querySelector('.right-side')
+        const leftSide = document.querySelector('.left-side')
         let p2 = document.createElement('p')
         p2.innerText=data[i].name;
-        rightSide.appendChild(p2)
+        p2.className="p2"
+        p2.setAttribute('id',data[i].id)
+        leftSide.appendChild(p2)
     
     }
+    
 }
