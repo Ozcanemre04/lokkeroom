@@ -17,7 +17,9 @@ import addMessage from "./addMessage"
 
 
 lobby()
-lobbyList()
+lobbyList('https://lokkeroom.herokuapp.com/api/lobby')
+lobbyList('https://lokkeroom.herokuapp.com/api/admin')
+
 
 //delete message
 document.addEventListener('dblclick',deletemessage);

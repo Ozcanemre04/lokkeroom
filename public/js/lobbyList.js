@@ -1,7 +1,7 @@
 
 import Cookies from "js-cookie";
-export default function lobbyList(){
-    fetch('https://lokkeroom.herokuapp.com/api/lobby',{
+export default function lobbyList(url){
+    fetch(url,{
        method:"GET",
        
        headers:{
@@ -28,6 +28,9 @@ function displaylobby(data){
         p2.className="p2"
         p2.setAttribute('id',data[i].id)
         leftSide.appendChild(p2)
+        const p3 =document.createElement('p')
+        p3.innerText=data[i].name
+        
     
     }
     
