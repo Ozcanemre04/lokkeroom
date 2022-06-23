@@ -28,9 +28,7 @@ function displaylobby(data){
         p2.className="p2"
         p2.setAttribute('id',data[i].id)
         leftSide.appendChild(p2)
-        const p3 =document.createElement('p')
-        p3.innerText=data[i].users.name
-        leftSide.appendChild(p3)
+        // p2.className=data[i].admin_id
     
     }
     
