@@ -29,8 +29,8 @@ function displaylobby(data){
         p2.setAttribute('id',data[i].id)
         leftSide.appendChild(p2)
         const p3 =document.createElement('p')
-        p3.innerText=data[i].name
-        
+        p3.innerText=data[i].users.name
+        leftSide.appendChild(p3)
     
     }
     
