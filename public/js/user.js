@@ -3,7 +3,7 @@ const bodyy = document.querySelector('.body')
 const leftSide = document.querySelector('.left-side')
 
 
-export default function lobby(){
+export default function user(){
     fetch('https://lokkeroom.herokuapp.com/api/user',{
        method:"GET",
        credentials: 'same-origin',

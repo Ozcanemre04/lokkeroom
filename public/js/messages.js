@@ -18,6 +18,18 @@ export default function displayMessages(data){
     let send =document.createElement('div')
     send.className='send'
     div2.appendChild(send)
+    let div3=document.createElement('div')
+    div3.classList.add('users-div')
+    rightSide.appendChild(div3)
+    let displayUsersButton=document.createElement('button')
+    displayUsersButton.innerHTML="display-users"
+    displayUsersButton.classList.add('display-users-button')
+    div3.appendChild(displayUsersButton)
+
+    let div4=document.createElement('div')
+    div4.classList.add('users-displayed')
+    div3.appendChild(div4)
+
     
     for(let i = 0;i<data.result.length;i++){
      

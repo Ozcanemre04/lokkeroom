@@ -8,23 +8,27 @@ const loginOverlayButton=document.querySelector('.overlay-login-button')
 
 import Cookies from "js-cookie";
 import login from './login'
-import lobby from './lobby'
+import user from './user'
 
-import lobbyList from './lobbyList'
+import lobbyList,{displaylobby,displayAdminlobby} from './lobbyList'
 import displayMessages from "./messages"
 import deletemessage from "./deletemessage"
 import addMessage from "./addMessage"
+import displayUser from "./displayUser"
+import deleteMessageAdmin from "./deleteMessageAdmin"
 
 
-lobby()
-lobbyList('https://lokkeroom.herokuapp.com/api/lobby')
-lobbyList('https://lokkeroom.herokuapp.com/api/admin')
+user()
+lobbyList('https://lokkeroom.herokuapp.com/api/lobby',displaylobby)
+lobbyList('https://lokkeroom.herokuapp.com/api/admin',displayAdminlobby)
 
+document.addEventListener('click',displayUser)
 
 //delete message
 document.addEventListener('dblclick',deletemessage);
     
-
+//delete message admin
+document.addEventListener('dblclick',deleteMessageAdmin)
 
 
 //send message
@@ -34,11 +38,12 @@ document.addEventListener('click',addMessage)
 //open message lobby
 document.addEventListener('click',(e)=>{
 
-    if(e.target&&e.target.className=="p2"){
+    if(e.target&&e.target.className=="admin"||e.target&&e.target.className=="not-admin"){
         
       const rightSide = document.querySelector('.right-side')
             rightSide.innerHTML=""
             rightSide.setAttribute("id",e.target.id)
+            rightSide.classList.add(e.target.className)
             let id = e.target.id
             
             fetch('https://lokkeroom.herokuapp.com/api/lobby/'+id+'?page=1&limit=1000',{

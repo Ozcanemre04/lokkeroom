@@ -132,3 +132,35 @@ a:hover{
     border-left: 20px solid rgb(2, 39, 173);
 }
 
+.left-side>.admin{
+    background-color: green;
+    margin: 10px 0 10px 0;
+    height: 50px;
+}
+.left-side>.not-admin{
+    background-color: gray;
+    margin: 10px 0 10px 0;
+    height: 50px;
+
+}
+
+.users-displayed{
+   background-color: rgba(9, 9, 9,0.5);
+   height: auto;
+   width: 100px;
+   position: absolute;
+   right: 10px;
+   top: 30px;
+   color: white;
+   display: none;
+   border-radius: 10px;
+   text-align: center;
+}
+
+.display-users-button{
+   border-radius: 10px;
+   position: absolute;
+   right: 10px;
+   top: 5px;
+}
+
