@@ -61,7 +61,7 @@ a:hover{
 
 .lobby-section{
     background-image: url("../img/index_section.jpg");
-    height: 621px;
+    height: auto;
     
 }
 .left-side p{
@@ -69,6 +69,7 @@ a:hover{
 }
 .both-side{
     display: flex;
+    
 
 }
 
@@ -79,7 +80,7 @@ a:hover{
 .right-side{
     position: relative;
     width: 80%;
-    height: 621px;
+    height: auto;
     background-color: rgba(0, 0, 0,0.5);
 }
 .left-side{
@@ -109,7 +110,7 @@ a:hover{
     position:absolute;
     bottom: 10px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-25%);
 }
 .input-message{
    height: 50px;
@@ -178,6 +179,10 @@ a:hover{
 .edit:hover{
     cursor:pointer;
 }
-.msg{
+.msg:hover{
+    cursor: pointer;
+}
+
+.dd:hover{
     cursor: pointer;
 }

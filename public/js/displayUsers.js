@@ -33,14 +33,14 @@ export default function displayUsers(e){
         
      for(let i=0;i<data.length;i++){
         let user=document.createElement('div')
+        user.className="dd"
         userDisplayed.appendChild(user)
         let p =document.createElement('p')
         user.appendChild(p)
-        p.innerText=data[i].name
-        p.className=data[i].id
-        let userDeleteButton=document.createElement('button')
-        userDeleteButton.innerText="-"
-        user.appendChild(userDeleteButton)
+        p.innerText=data[i].name+"(id="+data[i].id+")"
+        p.setAttribute('id',data[i].id)
+        
+        
      }
      
        

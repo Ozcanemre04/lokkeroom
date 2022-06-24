@@ -16,7 +16,9 @@ import addMessage from "./addMessage"
 import displayUsers from "./displayUsers"
 import deleteMessageAdmin from "./deleteMessageAdmin"
 import patchMessage,{patchMessageAdmin} from "./patchMessage"
-import addNewUser from "./addordeleteuser"
+import addNewUser, { deleteUser } from "./addordeleteuser"
+import addNewLobby from "./createlobby"
+import register from "./register"
 
 
 
@@ -25,7 +27,16 @@ user()
 lobbyList('https://lokkeroom.herokuapp.com/api/lobby',displaylobby)
 lobbyList('https://lokkeroom.herokuapp.com/api/admin',displayAdminlobby)
 
+//register
+const registerButton=document.querySelector('.register-button')
+if(registerButton){
+    registerButton.addEventListener('click',()=>{
+        registerOverlay.style.display="none"
+        loginOverlay.style.display="flex"
+        register()
 
+    })
+}
 //display all users in same lobby
 document.addEventListener('click',displayUsers)
 //edit for user
@@ -137,6 +148,10 @@ const newUserButton=document.querySelector('.new-user-button')
 
 newUserButton.addEventListener('click',addNewUser)
 
+//delete user
 
+document.addEventListener('dblclick',deleteUser)
 
+const newlobbyButton=document.querySelector('.new-lobby-button')
 
+newlobbyButton.addEventListener('click',addNewLobby)

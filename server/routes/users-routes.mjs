@@ -48,6 +48,12 @@ router.get('/user',authenticateToken,async(req,res)=>{
     const {name,email,password} = req.body;
     if (!name || !email || !password)
     return res.status(400).send({ error: 'Invalid request' })
+    const check=await pool.query('SELECT name,email FROM users')
+    
+    if(check.rowCount===1)
+    return res.send('user exist')
+        
+    
     try{
         const hashedpassword = await bcrypt.hash(password,10);
         const values= [name,email,hashedpassword]
