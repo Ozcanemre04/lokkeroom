@@ -5,8 +5,8 @@
   "source": "public/html/index.html",
   "scripts": {
     "start": "node server/server.mjs",
-    "test": "parcel",
-    "build": "parcel"
+    "test": "parcel"
+    
   },
   "keywords": [],
   "author": "",
