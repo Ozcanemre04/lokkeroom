@@ -5,7 +5,7 @@
   "source": "public/html/index.html",
   "scripts": {
     "start": "node server/server.mjs",
-    "test": "parcel public/html/index.html",
+    "test": "parcel",
     "build": "parcel"
   },
   "keywords": [],
