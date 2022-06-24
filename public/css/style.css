@@ -21,6 +21,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+   
 }
 
 .index_h2{
@@ -39,9 +40,7 @@
     justify-content: space-around;
     align-items: center;    
 }
-.lobby{
-    display: none;
-}
+
 h4,a{
     color: black;
 }
@@ -62,6 +61,7 @@ a:hover{
 .lobby-section{
     background-image: url("../img/index_section.jpg");
     height: auto;
+    
     
 }
 .left-side p{
@@ -107,10 +107,12 @@ a:hover{
     margin-left: 10px;
 }
 .input{
-    position:absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-25%);
+    margin-left:10%;
+}
+
+#all-messages{
+    display: flex;
+    flex-direction: column-reverse;
 }
 .input-message{
    height: 50px;
@@ -120,6 +122,8 @@ a:hover{
    background-color: transparent;
    border: 1px solid blue;
    color: wheat;
+   
+   
 }
 
 .send{

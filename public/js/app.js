@@ -23,6 +23,7 @@ import register from "./register"
 
 
 
+
 user()
 lobbyList('https://lokkeroom.herokuapp.com/api/lobby',displaylobby)
 lobbyList('https://lokkeroom.herokuapp.com/api/admin',displayAdminlobby)
@@ -30,7 +31,8 @@ lobbyList('https://lokkeroom.herokuapp.com/api/admin',displayAdminlobby)
 //register
 const registerButton=document.querySelector('.register-button')
 if(registerButton){
-    registerButton.addEventListener('click',()=>{
+    registerButton.addEventListener('click',(e)=>{
+        e.preventDefault
         registerOverlay.style.display="none"
         loginOverlay.style.display="flex"
         register()
@@ -42,7 +44,8 @@ document.addEventListener('click',displayUsers)
 //edit for user
 document.addEventListener('click',(e)=>{
     if(e.target&&e.target.className=="msg"){
-      if((e.target.parentElement.children[1].id===e.target.parentElement.parentElement.parentElement.parentElement.children[0].children[6].id)){
+        
+      if((e.target.parentElement.children[1].id===e.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[6].id)){
             e.target.contentEditable = true;
         
         }
@@ -145,13 +148,17 @@ if(loginOverlay){
 //add new user
 
 const newUserButton=document.querySelector('.new-user-button')
+if(newUserButton){
+    newUserButton.addEventListener('click',addNewUser)
 
-newUserButton.addEventListener('click',addNewUser)
+}
 
 //delete user
 
 document.addEventListener('dblclick',deleteUser)
-
+//add new lobby
 const newlobbyButton=document.querySelector('.new-lobby-button')
+if(newlobbyButton){
+    newlobbyButton.addEventListener('click',addNewLobby)
 
-newlobbyButton.addEventListener('click',addNewLobby)
+}

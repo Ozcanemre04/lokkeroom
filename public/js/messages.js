@@ -8,9 +8,11 @@ const rightSide = document.querySelector('.right-side')
 
 export default function displayMessages(data){
     let allmessages=document.createElement('div')
+    let allmessages2=document.createElement('div')
     let div2=document.createElement('div')
     div2.className='input'
-    rightSide.appendChild(div2)
+    allmessages.appendChild(div2)
+    allmessages.setAttribute('id',"all-messages")
     let inputMessage=document.createElement('input')
     inputMessage.className='input-message';
     
@@ -41,7 +43,8 @@ export default function displayMessages(data){
      
      rightSide.appendChild(div)
      rightSide.appendChild(allmessages)
-     allmessages.appendChild(div)
+     allmessages.appendChild(allmessages2)
+     allmessages2.appendChild(div)
      let message = document.createElement('p')
      message.innerText=data.result[i].message
      message.className='msg'

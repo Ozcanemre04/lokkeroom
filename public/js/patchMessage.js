@@ -5,6 +5,7 @@ export default function patchMessage(e){
         element.contentEditable = false;
         
         let id =e.target.parentElement.id;
+        console.log(e.target);
         fetch('https://lokkeroom.herokuapp.com/api/lobby/message/'+id,{
             method:"PATCH",
             body:JSON.stringify({

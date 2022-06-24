@@ -26,6 +26,7 @@ export default function register(){
             .then(data=>{
                 
                 console.log(data);
+               window.location.reload()
             })
         
     }
