@@ -152,9 +152,13 @@ a:hover{
    right: 10px;
    top: 30px;
    color: white;
-   display: none;
+   
    border-radius: 10px;
-   text-align: center;
+   
+}
+.users-displayed>div{
+    display: flex;
+    justify-content: space-between;
 }
 
 .display-users-button{
@@ -164,3 +168,16 @@ a:hover{
    top: 5px;
 }
 
+.edit{
+    border-radius: 10px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+.edit:hover{
+    cursor:pointer;
+}
+.msg{
+    cursor: pointer;
+}

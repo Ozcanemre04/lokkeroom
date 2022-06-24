@@ -18,6 +18,7 @@ export default function displayMessages(data){
     let send =document.createElement('div')
     send.className='send'
     div2.appendChild(send)
+
     let div3=document.createElement('div')
     div3.classList.add('users-div')
     rightSide.appendChild(div3)
@@ -25,10 +26,11 @@ export default function displayMessages(data){
     displayUsersButton.innerHTML="display-users"
     displayUsersButton.classList.add('display-users-button')
     div3.appendChild(displayUsersButton)
-
+    
     let div4=document.createElement('div')
     div4.classList.add('users-displayed')
     div3.appendChild(div4)
+    
 
     
     for(let i = 0;i<data.result.length;i++){
@@ -46,7 +48,12 @@ export default function displayMessages(data){
      div.appendChild(message)
      let authorName= document.createElement('i')
      authorName.innerText=data.result[i].name
+     authorName.setAttribute('id',data.result[i].author_id)
      div.appendChild(authorName)
+     let doneButton=document.createElement("button")
+     doneButton.innerText="edit"
+     doneButton.className='edit'
+     div.appendChild(doneButton)
 
     }
     

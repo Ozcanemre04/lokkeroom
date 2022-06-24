@@ -81,12 +81,11 @@ router.get('/users/:lobby_id',authenticateToken,async(req,res)=>{
 
 
 // delete user 
-router.delete('/lobby/:lobby_id/remove_user/',authenticateToken,async(req,res)=>{
+router.delete('/lobby/:lobby_id/remove_user/:user_id',authenticateToken,async(req,res)=>{
     try{
-       const{lobby_id}=req.params
+       const{lobby_id,user_id}=req.params
         const admin = req.user.id
         const lobby= await pool.query('SELECT admin_id FROM lobby WHERE admin_id=$1 AND id=$2',[admin,lobby_id])
-        const {user_id} = req.body
         const userexist= await pool.query('SELECT user_id FROM participants WHERE user_id=$1 AND lobby_id=$2',[user_id,lobby_id])
         
         if(lobby.rowCount===0){

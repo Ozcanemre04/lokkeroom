@@ -2,7 +2,7 @@
 
 import Cookies from "js-cookie";
 
-export default function displayUser(e){
+export default function displayUsers(e){
     if(e.target&&e.target.className=="display-users-button"){
         let userDisplayed=e.target.parentElement.children[1]
         userDisplayed.innerHTML="";
@@ -32,9 +32,15 @@ export default function displayUser(e){
      .then(data=>{
         
      for(let i=0;i<data.length;i++){
+        let user=document.createElement('div')
+        userDisplayed.appendChild(user)
         let p =document.createElement('p')
-        userDisplayed.appendChild(p)
+        user.appendChild(p)
         p.innerText=data[i].name
+        p.className=data[i].id
+        let userDeleteButton=document.createElement('button')
+        userDeleteButton.innerText="-"
+        user.appendChild(userDeleteButton)
      }
      
        

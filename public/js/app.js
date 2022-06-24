@@ -4,26 +4,53 @@ const registerOverlay=document.querySelector('.register-overlay')
 const loginOverlay=document.querySelector('.login-overlay')
 const registerOverlayButton=document.querySelector('.overlay-register-button')
 const loginOverlayButton=document.querySelector('.overlay-login-button')
-
+const rightSide = document.querySelector('.right-side')
 
 import Cookies from "js-cookie";
 import login from './login'
 import user from './user'
-
 import lobbyList,{displaylobby,displayAdminlobby} from './lobbyList'
 import displayMessages from "./messages"
 import deletemessage from "./deletemessage"
 import addMessage from "./addMessage"
-import displayUser from "./displayUser"
+import displayUsers from "./displayUsers"
 import deleteMessageAdmin from "./deleteMessageAdmin"
+import patchMessage,{patchMessageAdmin} from "./patchMessage"
+import addNewUser from "./addordeleteuser"
+
+
 
 
 user()
 lobbyList('https://lokkeroom.herokuapp.com/api/lobby',displaylobby)
 lobbyList('https://lokkeroom.herokuapp.com/api/admin',displayAdminlobby)
 
-document.addEventListener('click',displayUser)
 
+//display all users in same lobby
+document.addEventListener('click',displayUsers)
+//edit for user
+document.addEventListener('click',(e)=>{
+    if(e.target&&e.target.className=="msg"){
+      if((e.target.parentElement.children[1].id===e.target.parentElement.parentElement.parentElement.parentElement.children[0].children[6].id)){
+            e.target.contentEditable = true;
+        
+        }
+       else if(rightSide.classList.contains("admin")){
+          e.target.contentEditable=true;
+        }
+        else{
+            e.target.contentEditable=false;
+        }
+
+    }
+
+        
+    
+})
+
+//patch message
+document.addEventListener('click',patchMessage)
+document.addEventListener('click',patchMessageAdmin)
 //delete message
 document.addEventListener('dblclick',deletemessage);
     
@@ -104,6 +131,12 @@ if(loginOverlay){
 
 }
 
+//add new user
+
+const newUserButton=document.querySelector('.new-user-button')
+
+newUserButton.addEventListener('click',addNewUser)
 
 
-  
+
+

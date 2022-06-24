@@ -5,7 +5,8 @@ export default function addMessage(e){
         
          let inputMessage=e.target.parentElement.children[0]
          console.log(inputMessage);
-         let id=inputMessage.parentElement.parentElement.id;
+         const rightSide = document.querySelector('.right-side')
+         let id=rightSide.id;
          console.log(id);
          
          fetch('https://lokkeroom.herokuapp.com/api/lobby/'+id,{
