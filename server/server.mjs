@@ -11,7 +11,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}))
 app.use(cookieParser())
 app.get('/',(req,res)=>res.send({info:`hello`}));
-app.use(cors())
+app.use(cors({origin:"https://lokkeroom.herokuapp.com/",
+              credentials:true,}))
 
 
 
