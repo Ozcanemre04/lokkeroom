@@ -15,8 +15,6 @@ export default function register(){
                 headers:{
                     "Content-type":"application/json; charset=UTF-8",
                     
-     
-                    
                 }
             
                 
