@@ -11,7 +11,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}))
 app.use(cookieParser())
 app.use(cors({origin:"*",
-              credentials:true,}))
+              credentials:true,}));
+app.options('*',cors());              
+
 app.get('/',(req,res)=>res.send({info:`hello`}));
 
 
