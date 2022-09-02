@@ -25,7 +25,7 @@ router.get("/:lobby_id",authenticateToken,async(req,res)=>{
             
         }
         else{
-            const allmessages=await pool.query('SELECT  messages.message,messages.author_id,users.name,users.id,messages.id,messages.lobby_id FROM messages,users WHERE users.id=messages.author_id AND lobby_id =$1 ORDER BY messages.id ASC',[lobby_id])
+            const allmessages=await pool.query('SELECT  messages.message,messages.author_id,users.name,users.id,messages.id,messages.lobby_id,lobby.name FROM messages,users,lobby WHERE users.id=messages.author_id AND messages.lobby_id=lobby.id AND lobby_id =$1 ORDER BY messages.id ASC',[lobby_id])
             //pagination
             if(endIndex < allmessages.rows.length){
                 result.next ={
