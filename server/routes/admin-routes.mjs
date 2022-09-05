@@ -10,7 +10,7 @@ router.get('/users/:lobby_id',authenticateToken,async(req,res)=>{
         const admin = req.user.id
         const lobby= await pool.query('SELECT admin_id FROM lobby WHERE admin_id=$1 AND id=$2',[admin,lobby_id])
         if(lobby.rowCount===0){
-           res.json("you are not admin")   
+           res.json([{err:"you are not admin"}])   
 }
         else{
             
