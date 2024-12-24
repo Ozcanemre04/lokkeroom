@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import  pool  from "../db/database.mjs";
 // import cookieParser from "cookie-parser";
 import dotenv from 'dotenv';
-import jwtTokens from '../function_token/jwtTokens.mjs'
+import jwtTokens from '../Middleware/jwtTokens.mjs'
 
 dotenv.config()
 
@@ -26,6 +26,9 @@ router.post("/login",async(req,res)=>{
     //jwt
      
     let tokens =jwtTokens(users.rows[0]);
+    
+    console.log(tokens);
+    
     res.cookie('refresh_token',tokens.refreshToken,{httpOnly:true});
     res.json(tokens)
 

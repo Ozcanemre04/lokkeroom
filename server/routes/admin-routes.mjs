@@ -1,6 +1,6 @@
 import express  from "express";
 import  pool  from "../db/database.mjs";
-import {authenticateToken} from "../function_token/authenticateToken.mjs"
+import {authenticateToken} from "../Middleware/authenticateToken.mjs";
 const router=express.Router();
 
 //get all users in same lobby
@@ -54,24 +54,32 @@ router.get('/users/:lobby_id',authenticateToken,async(req,res)=>{
    router.post('/lobby/:lobby_id/add_user',authenticateToken,async(req,res)=>{
     try{ 
         const admin = req.user.id
-        const{user_id}=req.body
+        const{user_name}=req.body
         const{lobby_id}=req.params
-        if(!user_id)
-        return res.status(400).send({ error: 'Invalid request' });
+        if(!user_name){
+            return res.status(400).send({ error: 'Invalid request' });
+        }
         const lobby= await pool.query('SELECT admin_id FROM lobby WHERE admin_id=$1 AND id=$2',[admin,lobby_id])
-        const userexist= await pool.query('SELECT user_id FROM participants WHERE user_id=$1 AND lobby_id=$2',[user_id,lobby_id])
         if(lobby.rowCount===0){
             res.json("you are not admin")
         }
+        const finduser = await pool.query('SELECT id,name FROM users WHERE name=$1',[user_name])
+        if(finduser.rowCount===0){
+            res.status(404).send("user is not found");
+        }
+     
         else{
-            if(userexist.rowCount===0){
-                const add_user= await pool.query('INSERT INTO participants(lobby_id,user_id) VALUES ($1,$2) RETURNING *',[lobby_id,user_id])
+            var userid = finduser.rows[0].id;
+            const userexist= await pool.query('SELECT user_id FROM participants WHERE user_id=$1 AND lobby_id=$2',[userid,lobby_id])
+            if(userexist.rowCount===0 && admin!==userid){
+                const add_user= await pool.query('INSERT INTO participants(lobby_id,user_id) VALUES ($1,$2) RETURNING *',[lobby_id,userid])
                 res.json(add_user.rows[0])
 
             }
             else{
                 res.json('already added')
             }
+            
         }
     }
     catch(err){
@@ -100,6 +108,24 @@ router.delete('/lobby/:lobby_id/remove_user/:user_id',authenticateToken,async(re
                 res.json(delete_user.rows[0])
                  }
             
+        }
+    }catch(err){
+        res.json(err.message)
+    }
+    })
+//delete lobby
+router.delete('/removelobby/:lobby_id',authenticateToken,async(req,res)=>{
+    try{
+       const{lobby_id}=req.params
+        const admin = req.user.id
+        const lobby= await pool.query('SELECT admin_id FROM lobby WHERE admin_id=$1 AND id=$2',[admin,lobby_id])
+     
+        if(lobby.rowCount===0){
+            res.json('you are not admin')
+        }
+        else{
+                const delete_user=await pool.query('DELETE FROM lobby WHERE admin_id=$1 AND id=$2 RETURNING *',[admin,lobby_id])
+                res.json(delete_user.rows[0]) 
         }
     }catch(err){
         res.json(err.message)

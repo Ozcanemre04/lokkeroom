@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
  import  pool  from "../db/database.mjs";
 
 const router=express.Router();
-import {authenticateToken} from "../function_token/authenticateToken.mjs"
+import {authenticateToken} from "../Middleware/authenticateToken.mjs"
 
 
 router.get('/user',authenticateToken,async(req,res)=>{
@@ -47,13 +47,18 @@ router.get('/user',authenticateToken,async(req,res)=>{
    router.post("/register",async(req,res)=>{
     const {name,email,password} = req.body;
     if (!name || !email || !password)
-    return res.status(400).send({ error: 'Invalid request' })
-    const check=await pool.query('SELECT name,email FROM users')
+    return res.status(400).send('Invalid request')
+    const emailExist=await pool.query('SELECT name,email FROM users WHERE email =$1',[email])
+    const nameExist=await pool.query('SELECT name,email FROM users WHERE name =$1',[name])
     
-    if(check.rowCount===1)
-    return res.send('user exist')
-        
     
+    if(emailExist.rowCount>0){
+        return res.status(401).send('email already exist')
+    }
+    if(nameExist.rowCount>0)
+    return res.status(401).send('name already exist')
+    
+ 
     try{
         const hashedpassword = await bcrypt.hash(password,10);
         const values= [name,email,hashedpassword]
