@@ -7,7 +7,8 @@ import adminRouter from './routes/admin-routes.mjs'
 import cors from "cors";
 import { Server, Socket } from "socket.io";
 import {createServer} from "http";
-import { log } from "console";
+
+
 
 
 const app = express();
@@ -26,26 +27,75 @@ app.use(cookieParser());
 app.get('/',(req,res)=>res.send({info:`hello`}));
 
 const io = new Server(server,{cors:corsOptions});
-
+let users= [];
 io.on('connection',socket =>{
-    console.log(socket.id);
-    
+     console.log(socket.id);
+     
      socket.on('join-room',lobbyId=>{
+           socket.rooms.forEach(room => {
+             if(room!== socket.id){
+               socket.leave(room)
+             }
+           });
            socket.join(lobbyId);
-           
        })
      socket.on("send-message",msg=>{
         io
-        .to(msg.lobby_id).emit("receive-message",msg)
+        .in(msg.lobby_id).emit("receive-message",msg)
      })
      socket.on("delete-message",deletedMsg=>{
         io
-        .to(deletedMsg.lobby_id).emit("deleted-message",deletedMsg)
+        .in(deletedMsg.lobby_id).emit("deleted-message",deletedMsg)
      })
      socket.on("update-message",updatedMsg=>{
         io
-        .to(updatedMsg.lobby_id).emit("updated-message",updatedMsg)
+        .in(updatedMsg.lobby_id).emit("updated-message",updatedMsg)
      })
+
+     socket.on("create-lobby",lobby=>{  
+      io
+      .to(socket.id).emit("receive-lobby",lobby)
+     })
+     socket.on("delete-lobby",lobby=>{
+      io
+      .emit("lobby-deleted",lobby)
+     })
+     socket.on("connected-user",user=>{
+      let findUser=users.find(u=>u.userId===user);
+      if(!findUser){
+         users.push({userId:user,socket:socket.id});
+      }
+      else{
+         findUser.socket=socket.id
+      }
+      console.log(users);
+      
+       io.emit("all-connected-user",users)
+     })
+     socket.on("add-user",user=>{
+      io.to(socket.id).emit("user-added",{id:user.user_id,name:user.name,lobby_id:user.lobby_id});
+      let findUser=users.find(u=>u.userId===user.user_id);
+      if(findUser){
+         io.to(findUser.socket).emit("not-admin-lobby",{name:user.lobbyName,lobby_id:user.lobby_id,user_id:user.user_id})
+      }
+     })
+     socket.on("delete-user",user=>{
+      io.to(socket.id).emit("user-deleted",user.user_id);
+      let findUser=users.find(u=>u.userId===user.user_id);
+      if(findUser){
+         io.to(findUser.socket).emit("not-admin-lobby-deleted",user.lobby_id)
+      }
+     })
+     socket.on("disc",user=>{
+      console.log(user);
+       users=users.filter(u=>u.userId!==user);
+       console.log(users);
+       io.emit("disconneted-user",users)
+       
+
+     })
+
+    
     
 })
 

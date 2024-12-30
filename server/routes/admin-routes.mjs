@@ -73,7 +73,10 @@ router.get('/users/:lobby_id',authenticateToken,async(req,res)=>{
             const userexist= await pool.query('SELECT user_id FROM participants WHERE user_id=$1 AND lobby_id=$2',[userid,lobby_id])
             if(userexist.rowCount===0 && admin!==userid){
                 const add_user= await pool.query('INSERT INTO participants(lobby_id,user_id) VALUES ($1,$2) RETURNING *',[lobby_id,userid])
-                res.json(add_user.rows[0])
+                
+                const user= await pool.query('SELECT participants.id,users.name,participants.lobby_id,participants.user_id FROM users,participants WHERE users.id= participants.user_id AND participants.user_id=$1 AND participants.lobby_id=$2',[add_user.rows[0].user_id,lobby_id])
+                console.log(user.rows[0]);
+                res.json(user.rows[0])
 
             }
             else{
@@ -104,7 +107,7 @@ router.delete('/lobby/:lobby_id/remove_user/:user_id',authenticateToken,async(re
                 res.json(`user doens't exist in this lobby`)
             }
             else{
-                const delete_user=await pool.query('DELETE FROM participants WHERE user_id=$1 RETURNING *',[user_id])
+                const delete_user=await pool.query('DELETE FROM participants WHERE user_id=$1 AND lobby_id=$2 RETURNING *',[user_id,lobby_id])
                 res.json(delete_user.rows[0])
                  }
             
